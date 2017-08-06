@@ -14,7 +14,7 @@ qwebirc.ui.supportsFocus = function() {
  * settableByURL...
  */
 qwebirc.config.DEFAULT_OPTIONS = [
-  [1, "BEEP_ON_MENTION", "Beep on activity", true, {
+  [1, "BEEP_ON_MENTION", "Звуков сигнал когато се спомене ник-а Ви или ви пишат на лична (изисква Flash)", true, {
     applyChanges: function(value, ui) {
       if(ui.setBeepOnMention)
         ui.setBeepOnMention(value);
@@ -31,29 +31,29 @@ qwebirc.config.DEFAULT_OPTIONS = [
         ui.setNotifications(value);
     }
   }],
-  [7, "FLASH_ON_MENTION", "Flash titlebar when nick mentioned or on query activity", true, {
+  [7, "FLASH_ON_MENTION", "Да примигва ли прозореца когато някой спомене ник-а или ви пише на лична", true, {
     enabled: qwebirc.ui.supportsFocus
   }],
-  [2, "DEDICATED_MSG_WINDOW", "Send privmsgs to dedicated messages window", false],
-  [4, "DEDICATED_NOTICE_WINDOW", "Send notices to dedicated message window", false],
-  [3, "NICK_OV_STATUS", "Show status (@/+) before nicknames in channel lines", true],
+  [2, "DEDICATED_MSG_WINDOW", "Изпращане на всички съобщения на лична в 1 прозорец (опцията премахната)", false],
+  [4, "DEDICATED_NOTICE_WINDOW", "Същото като горното но за NOTICE (опцията премахната)", false],
+  [3, "NICK_OV_STATUS", "Показване на @/+/% преди никовете ", true],
   /* 5 and 6 are reserved */
-  [8, "LASTPOS_LINE", "Show a last position indicator for each window", true, {
+  [8, "LASTPOS_LINE", "Показване на индикатор за последната позиция на прозорците", true, {
     enabled: qwebirc.ui.supportsFocus
   }],
-  [9, "NICK_COLOURS", "Automatically colour nicknames", false],
-  [10, "HIDE_JOINPARTS", "Hide JOINS/PARTS/QUITS", false],
-  [11, "STYLE_HUE", "Adjust user interface hue", function(ui) {
+  [9, "NICK_COLOURS", "Автоматично оцветяване на никовете в лист-а", true],
+  [10, "HIDE_JOINPARTS", "Скриване на JOINS/PARTS/QUITS", false],
+  [11, "STYLE_HUE", "Промяна на цвета на чат-а", function(ui) {
     return {class_: qwebirc.config.HueOption, default_: ui.__styleValues.hue};
   }, {
     applyChanges: function(value, ui) {
       ui.setModifiableStylesheetValues({hue: value});
     }
   }],
-  [12, "QUERY_ON_NICK_CLICK", "Query on nickname click in channel", false],
-  [13, "SHOW_NICKLIST", "Show nickname list in channels", qwebirc.util.deviceHasKeyboard()],
-  [14, "SHOW_TIMESTAMPS", "Show timestamps", true], /* we rely on the hue update */
-  [15, "SIDE_TABS", "Show tabs on the side", false, {
+  [12, "QUERY_ON_NICK_CLICK", "Пиши на лична с едно цъкане върху ник-а в канала", false],
+  [13, "SHOW_NICKLIST", "Покажи списъка с никове в канала", true],
+  [14, "SHOW_TIMESTAMPS", "Покажи часа", true], /* we rely on the hue update */
+  [15, "SIDE_TABS", "Показване на разделители отстрани", false, {
     enabled: function() {
       if(Browser.Engine.trident && Browser.Engine.version < 8)
         return [false, false]; /* [disabled, default_value] */
